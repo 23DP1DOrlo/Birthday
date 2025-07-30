@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
+
+  
 function showImage(button, imagePath) {
     const card = button.parentElement;
     const imageContainer = card.querySelector('.extra-image');
