@@ -15,9 +15,37 @@ function showImage(button, imagePath) {
   }
 
 
+  const target = document.getElementById('birt');
+const text = "С днем рождения солнышко мое самое любимое на свете, тебе теперь 18 годиков!❤️";
+let animated = false;
+
+function typeWriter(element, text, delay = 75) {
+  let i = 0;
+  const interval = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+    if (i === text.length) {
+      clearInterval(interval);
+    }
+  }, delay);
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !animated) {
+      typeWriter(target, text);
+      animated = true;
+    }
+  });
+}, {
+  threshold: 0.6
+});
+
+observer.observe(target);
+
   const fallingContainer = document.querySelector(".falling-objects");
   const imageSources = [
-    "WebPage/src/images/svg/cube.svg"
+    "src/heart.svg"
   ];
   
   function spawnFallingImage() {
@@ -38,7 +66,7 @@ function showImage(button, imagePath) {
       spawnFallingImage();
       scrollTimeout = setTimeout(() => {
         scrollTimeout = null;
-      }, 600);
+      }, 60);
     }
   });
   
